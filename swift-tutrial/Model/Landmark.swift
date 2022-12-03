@@ -10,6 +10,7 @@ struct Landmark: Hashable, Codable, Identifiable {
     var park: String
     var state: String
     var description: String
+    var isFavorite: Bool
     
 //  宣言内のみでしかアクセスできないのがprivate。変更されたくないものに使う
     private var imageName: String
