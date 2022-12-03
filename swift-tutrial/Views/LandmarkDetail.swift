@@ -1,31 +1,26 @@
-//
-//  ContentView.swift
-//  swift-tutrial
-//
-//  Created by nakamura yusaku on 2022/12/01.
-//
-
 import SwiftUI
 
-struct ContentView: View {
+struct LandmarkDetail: View {
+    var landmark: Landmark
+    
     var body: some View {
-        VStack {
-            MapView()
+        ScrollView {
+            MapView(coordinate: landmark.locationCoordinate)
                 .ignoresSafeArea(edges: .top)
                 .frame(height: 300)
-            CircleImage()
+            CircleImage(image: landmark.image)
                 .offset(y: -130)
                 .padding(.bottom, -130)
             
             VStack(alignment: .leading) {
-                Text("Turtl rock")
+                Text(landmark.name)
                     .font(.title)
 //                    .foregroundColor(.green)
                 HStack {
-                    Text("Joshua Tree National Park")
+                    Text(landmark.park)
                         .font(.subheadline)
                     Spacer()
-                    Text("California")
+                    Text(landmark.state)
                         .font(.subheadline)
                 }
                 .font(.subheadline)
@@ -33,19 +28,20 @@ struct ContentView: View {
                 
                 Divider()
                 
-                Text("about Turtle Rock")
+                Text("about \(landmark.name)")
                     .font(.title2)
-                Text("Descriptive text goes here.")
+                Text(landmark.description)
             }
             .padding()
-            
-            Spacer()
         }
+//      ナビゲーションバーにタイトルをつけ、インラインで表示
+        .navigationTitle(landmark.name)
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct LandmarkDetail_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        LandmarkDetail(landmark: landmarks[0])
     }
 }
