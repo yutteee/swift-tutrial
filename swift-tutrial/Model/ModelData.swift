@@ -1,4 +1,12 @@
 import Foundation
+import Combine
+
+// finalは継承を禁止したクラス
+// ObservableObjectはデータが更新されたときに更新が必要なすべてのビューを更新する。
+final class ModelData: ObservableObject {
+//  PublishedはObservableObjectでプロパティを監視するため
+    @Published var landmarks: [Landmark] = load("landmarkData.json")
+}
 
 var landmarks: [Landmark] = load("landmarkData.json")
 //指定した名前のJSONデータを取得するloadメソッド

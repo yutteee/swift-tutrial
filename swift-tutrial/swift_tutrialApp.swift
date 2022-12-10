@@ -8,10 +8,14 @@
 import SwiftUI
 
 @main
-struct swift_tutrialApp: App {
+struct LandmarksApp: App {
+//    StateObjectは一度だけ指定されたプロパティのモデルオブジェクトを初期化することができる
+    @StateObject private var modelData = ModelData()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(modelData)
         }
     }
 }
